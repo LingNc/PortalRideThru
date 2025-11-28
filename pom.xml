@@ -6,7 +6,7 @@
 
 	<groupId>com.mjkrempl.portalridethru</groupId>
 	<artifactId>PortalRideThru</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<packaging>jar</packaging>
 
 	<name>PortalRideThru</name>
@@ -55,6 +55,11 @@
 
 	<repositories>
 		<repository>
+			<id>papermc-repo</id>
+			<url>https://repo.papermc.io/repository/maven-public/</url>
+		</repository>
+
+		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
@@ -67,9 +72,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.17.1-R0.1-SNAPSHOT</version>
+			<groupId>io.papermc.paper</groupId>
+			<artifactId>paper-api</artifactId>
+			<version>1.21.7-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 

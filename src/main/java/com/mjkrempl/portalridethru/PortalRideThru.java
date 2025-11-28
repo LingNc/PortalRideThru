@@ -9,15 +9,15 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 public final class PortalRideThru extends JavaPlugin {
 	private Configuration config;
-	private static final String maxGameVersion = "1.20.6";
-	
+	private static final String maxGameVersion = "1.21.7";
+
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
 		Configuration.migrateIfNecessary(this);
 		config = new Configuration(this);
 	}
-	
+
 	@Override
 	public void onEnable() {
 		// Don't set up and disable plugin if config wishes to or if plugin is redundant due to newer version
@@ -25,21 +25,21 @@ public final class PortalRideThru extends JavaPlugin {
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
-		
+
 		VehicleRemountManager remountManager = new VehicleRemountManager(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL, config.keepSpeed, config.portalCooldown);
-		
+
 		// Register event handlers
 		VehicleEventListener vehicleEventListener = new VehicleEventListener(remountManager, Material.NETHER_PORTAL);
 		getServer().getPluginManager().registerEvents(vehicleEventListener, this);
 	}
-	
-	
+
+
 	private boolean checkGameMajorVersionTooNew() {
 		String version = getServer().getBukkitVersion();
 		String[] versionComponents = version.split("-");
 		if (versionComponents.length == 0) return false;
 		String mcVersion = versionComponents[0];
-		
+
 		int compare = mcVersion.compareTo(maxGameVersion);
 		if (compare > 0) {
 			getLogger().log(Level.WARNING, "Game version is newer than " + maxGameVersion + ", this plugin's functionality is already implemented. Will disable.");
